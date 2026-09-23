@@ -1,5 +1,7 @@
 # 🧬 MOEA/D – Zerlegung statt Dominanz-Sortierung
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-moead-demo.streamlit.app/)**
+
 Viertes Stück der **Populations-Metaheuristiken-Linie** der "Konzepte"-Reihe im Portfolio von [Sebastian Hanisch](https://sebastianhanisch.net) –
 Operations Research und Machine Learning. Kontrast zu [nsga2-demo](https://sebastianhanisch-nsga2-demo.streamlit.app/)
 und [nsga3-demo](https://sebastianhanisch-nsga3-demo.streamlit.app/): MOEA/D (Zhang & Li, 2007) sortiert nicht nach
