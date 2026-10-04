@@ -215,8 +215,8 @@ if st.session_state.get("neighborhood_on"):
     st.plotly_chart(build_neighborhood_experiment(rows_n), width="stretch", key="neighborhood_chart")
     st.warning(
         "**Ehrlicher Befund:** Über 10 Läufe je T-Wert (Standardvehikel, 60 Gewichtsvektoren, 100 Generationen) ergibt sich "
-        "keine saubere U-Form. Die Median-Archivgröße bewegt sich zwischen 4 und 6{,}5 und folgt T nicht monoton "
-        "(T=3: 5{,}5 · T=6: 5{,}0 · T=10: 6{,}5 · T=20: 4{,}0 · T=40: 4{,}0) - erkennbar ist nur, dass sehr große T-Werte "
+        "keine saubere U-Form. Die Median-Archivgröße bewegt sich zwischen 4 und 6,5 und folgt T nicht monoton "
+        "(T=3: 5,5 · T=6: 5,0 · T=10: 6,5 · T=20: 4,0 · T=40: 4,0) - erkennbar ist nur, dass sehr große T-Werte "
         "eher zu kleineren Archiven führen, nicht aber ein sauberer Mittelbereich-Vorteil. Bei nur 10 Läufen je Wert bleibt "
         "Rauschen ein plausibler Mitgrund; ein einzelner Lauf mit dem Standard-Seed zeigt dagegen den erwarteten Kontrast "
         "deutlich (T=3: Archiv 8, T=40: Archiv 3 - siehe Presets 'Kleine Nachbarschaft'/'Große Nachbarschaft')."
@@ -272,6 +272,6 @@ Implementiert in `moead_algorithm.py` (Gewichtsvektoren, Nachbarschaften, Tcheby
 st.markdown("---")
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zur Reihe: [Populations-Metaheuristiken: GA bis Memetic](https://sebastianhanisch.net/konzepte-populations-metaheuristiken.html)."
 )
