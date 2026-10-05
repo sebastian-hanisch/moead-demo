@@ -11,6 +11,7 @@ from dataclasses import dataclass, field
 import numpy as np
 
 EPS = 1e-9
+OBJ_DECIMALS = 6      # Zielwerte gelten als gleich, wenn sie sich erst jenseits dieser Nachkommastelle unterscheiden
 
 
 # ===============================================================================================================================
@@ -129,10 +130,14 @@ def tchebycheff(F, weights, ideal):
 
 def update_archive(archive_obj, new_obj):
     """Aktualisiert das externe Archiv (bereits nicht-dominiert, eindeutig) mit neuen Kandidaten - nicht-dominierte,
-    eindeutige Zielwerte über die Vereinigung. `archive_obj` kann leer sein (Startaufruf)."""
+    eindeutige Zielwerte über die Vereinigung. `archive_obj` kann leer sein (Startaufruf). "Eindeutig" heißt bis auf
+    OBJ_DECIMALS Nachkommastellen: dieselbe Rundtour in anderer Drehung/Richtung summiert die Kanten in anderer Reihenfolge,
+    die Zielwerte unterscheiden sich dann um Fließkomma-Rauschen (~1e-13) - als exakt verschiedene Zeilen blieben beide
+    nicht-dominiert und das Archiv zählte einen Scheinpunkt mehr."""
     combined = np.vstack([archive_obj, new_obj]) if len(archive_obj) else new_obj
-    unique_obj = np.unique(combined, axis=0)
-    return unique_obj[non_dominated_mask(unique_obj)]
+    rounded = np.round(combined, OBJ_DECIMALS)
+    _, first = np.unique(rounded, axis=0, return_index=True)
+    return combined[first][non_dominated_mask(rounded[first])]
 
 
 @dataclass

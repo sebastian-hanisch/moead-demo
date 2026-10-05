@@ -69,9 +69,10 @@ def brute_force_front(n_nodes, fn):
     """Alle (n_nodes - 1)! Touren. Gibt (alle Objektive, eindeutige nicht-dominierte Zielwerte) zurück."""
     tours = np.array([(0,) + p for p in permutations(range(1, n_nodes))], dtype=np.int64)
     obj = fn(tours)
-    unique_obj = np.unique(obj, axis=0)
-    nd_mask = A.non_dominated_mask(unique_obj)
-    return obj, unique_obj[nd_mask]
+    rounded = np.round(obj, A.OBJ_DECIMALS)          # gespiegelte Touren: Zielwerte nur um Fließkomma-Rauschen verschieden
+    _, first = np.unique(rounded, axis=0, return_index=True)
+    nd_mask = A.non_dominated_mask(rounded[first])
+    return obj, obj[first][nd_mask]
 
 
 def front_coverage(true_front_obj, found_obj, tol=1e-6):

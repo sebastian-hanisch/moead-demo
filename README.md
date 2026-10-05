@@ -36,7 +36,9 @@ Population), erzeugt einen Nachkommen (Order Crossover + Tausch-Mutation, wortgl
 den Idealpunkt und ersetzt Nachbarn, deren Tchebycheff-Wert der Nachkomme unterbietet - begrenzt auf `nr` Ersetzungen je
 Nachkomme (wie im Originalpapier, gegen zu schnelle Übernahme durch einen einzelnen guten Nachkommen). Ein externes
 Archiv (`update_archive`, nicht-dominierte Menge über alle bisher erzeugten Nachkommen) entspricht "Front 1" bei
-NSGA-II/III.
+NSGA-II/III. Zielwerte, die sich erst jenseits der 6. Nachkommastelle unterscheiden, gelten als derselbe Punkt (dieselbe Rundtour
+in anderer Drehung oder Richtung summiert die Kanten in anderer Reihenfolge; ohne diese Rundung zählte das Archiv bei kleinen
+Instanzen Scheinpunkte mit, gefunden per Orakelprüfung).
 
 ## Befunde (gemessen, keine Behauptungen)
 
@@ -61,7 +63,7 @@ NSGA-II/III.
 
 ## Tests
 
-68 Tests (`pytest tests/ -v`): Gewichtsvektoren/Nachbarschaften per Handrechnung, Tchebycheff-Skalarisierung exakt gegen
+73 Tests (`pytest tests/ -v`): Gewichtsvektoren/Nachbarschaften per Handrechnung, Tchebycheff-Skalarisierung exakt gegen
 `pymoo` geprüft (15 Zufallsinstanzen), externes Archiv gegen konstruierte Beispiele, MOEA/D findet auf einer sehr kleinen
 Instanz nachweislich die Mehrheit der Brute-Force-Front, Szenario-Erzeugung bitidentisch zu nsga2-demo geprüft,
 AppTest-Rauchtests (jedes Preset, Generation-Slider inkl. Abspielen, Permalink-Grenzen, beide Experimente + Sweep auf
